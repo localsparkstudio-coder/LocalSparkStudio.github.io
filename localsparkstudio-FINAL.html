@@ -1,0 +1,1949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Local Spark Studio — Professional web design for small businesses. Fast, affordable websites that get you found on Google. Based in Sayreville, NJ, serving nationwide.">
+<title>Local Spark Studio — Igniting Local Businesses Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET & VARIABLES
+============================================================ */
+:root {
+  --ink: #121212;
+  --spark: #f05a1a;
+  --spark-dark: #c44510;
+  --spark-light: #f47340;
+  --light: #f7f5f2;
+  --spark-glow: #fff3ec;
+  --mid: #2a2a2a;
+  --muted: #888;
+  --border: rgba(18,18,18,0.09);
+  --border-light: rgba(255,255,255,0.1);
+  --shadow-sm: 0 2px 12px rgba(18,18,18,0.07);
+  --shadow-md: 0 8px 32px rgba(18,18,18,0.1);
+  --shadow-lg: 0 24px 64px rgba(18,18,18,0.14);
+  --shadow-spark: 0 8px 32px rgba(240,90,26,0.35);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+::selection { background: var(--spark); color: #fff; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--light);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* ============================================================
+   SCROLL REVEAL
+============================================================ */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+.reveal.animate-ready {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.animate-ready.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  background: rgba(247,245,242,0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(18,18,18,0.07);
+  transition: box-shadow 0.4s, background 0.3s;
+}
+nav.scrolled {
+  box-shadow: 0 4px 24px rgba(18,18,18,0.08);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+.nav-logo-icon {
+  width: 36px; height: 36px;
+  background: var(--ink);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.35s var(--ease-spring), background 0.2s;
+}
+.nav-logo:hover .nav-logo-icon {
+  background: var(--spark);
+  transform: rotate(-6deg) scale(1.06);
+}
+.logo-text {
+  font-family: 'Fraunces', serif;
+  font-size: 0.97rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+}
+.logo-text span { color: var(--spark); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 7px 12px;
+  border-radius: 8px;
+  opacity: 0.55;
+  transition: opacity 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.nav-links a:hover { opacity: 1; background: rgba(18,18,18,0.055); }
+.nav-links a.active { opacity: 1; }
+
+.btn-nav {
+  background: var(--spark) !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  padding: 9px 20px !important;
+  border-radius: 100px !important;
+  font-weight: 700 !important;
+  font-size: 0.84rem !important;
+  box-shadow: 0 2px 10px rgba(240,90,26,0.22), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: background 0.2s, transform 0.25s var(--ease-spring), box-shadow 0.2s !important;
+  margin-left: 8px;
+}
+.btn-nav:hover {
+  background: var(--spark-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 22px rgba(240,90,26,0.38) !important;
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 1001;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 70px; left: 0; right: 0;
+  background: var(--light);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 5% 24px;
+  z-index: 999;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-8px);
+  opacity: 0;
+  transition: transform 0.3s var(--ease-out), opacity 0.3s;
+}
+.mobile-drawer.open {
+  display: flex;
+  transform: translateY(0);
+  opacity: 1;
+}
+.mobile-drawer a {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s;
+}
+.mobile-drawer a:hover { background: rgba(18,18,18,0.05); }
+.mobile-drawer .mob-cta {
+  background: var(--spark);
+  color: #fff;
+  text-align: center;
+  border-radius: 100px;
+  margin-top: 8px;
+  padding: 14px;
+}
+.mobile-drawer .mob-cta:hover { background: var(--spark-dark); }
+
+/* ============================================================
+   HERO
+============================================================ */
+#home {
+  min-height: 100vh;
+  padding: 120px 5% 80px;
+  display: flex;
+  align-items: center;
+}
+.hero-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--spark-glow);
+  border: 1px solid rgba(240,90,26,0.18);
+  color: var(--spark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border-radius: 100px;
+  margin-bottom: 26px;
+}
+.hero-tag::before {
+  content: '';
+  width: 7px; height: 7px;
+  background: var(--spark);
+  border-radius: 50%;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.hero-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(3rem, 5.5vw, 4.6rem);
+  font-weight: 900;
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+  margin-bottom: 26px;
+}
+.hero-title em { font-style: italic; color: var(--spark); }
+
+.hero-sub {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #585858;
+  max-width: 500px;
+  margin-bottom: 44px;
+}
+
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 52px;
+}
+
+.btn-primary {
+  background: var(--spark);
+  color: #fff;
+  padding: 15px 32px;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-spark);
+  transition: background 0.2s, transform 0.25s var(--ease-spring), box-shadow 0.2s;
+}
+.btn-primary:hover { background: var(--spark-dark); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(240,90,26,0.45); }
+
+.btn-ghost {
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 20px;
+  border-radius: 100px;
+  border: 2px solid var(--border);
+  transition: border-color 0.2s, color 0.2s, transform 0.25s var(--ease-spring);
+}
+.btn-ghost:hover { border-color: var(--spark); color: var(--spark); transform: translateY(-2px); }
+.btn-ghost-arrow { transition: transform 0.2s; }
+.btn-ghost:hover .btn-ghost-arrow { transform: translateX(3px); }
+
+.hero-trust {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-top: 30px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.trust-num {
+  font-family: 'Fraunces', serif;
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.trust-num span { color: var(--spark); }
+.trust-label { font-size: 0.78rem; color: var(--muted); line-height: 1.3; }
+.trust-divider { width: 1px; height: 28px; background: var(--border); }
+
+/* BROWSER MOCKUP */
+.hero-visual { position: relative; }
+
+.browser {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg), 0 0 0 1px var(--border);
+  overflow: hidden;
+}
+.browser-chrome {
+  background: #eeece9;
+  padding: 11px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.browser-dots { display: flex; gap: 6px; }
+.browser-dots span { width: 11px; height: 11px; border-radius: 50%; }
+.browser-dots span:nth-child(1) { background: #ff5f57; }
+.browser-dots span:nth-child(2) { background: #febc2e; }
+.browser-dots span:nth-child(3) { background: #28c840; }
+.browser-url {
+  flex: 1;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.browser-url::before {
+  content: '';
+  width: 8px; height: 8px;
+  background: #28c840;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.browser-body { background: var(--light); padding: 20px; }
+
+/* mini mockup inside browser */
+.mock-topbar {
+  background: var(--ink);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.mock-logo-row { display: flex; align-items: center; gap: 7px; }
+.mock-logo-sq { width: 18px; height: 18px; background: var(--spark); border-radius: 5px; }
+.mock-logo-bar { height: 7px; width: 70px; background: rgba(255,255,255,0.25); border-radius: 3px; }
+.mock-nav-pills { display: flex; gap: 6px; }
+.mock-nav-pills span { height: 6px; width: 30px; background: rgba(255,255,255,0.15); border-radius: 3px; }
+.mock-hero-area { padding: 10px 0 6px; }
+.mock-h1 { height: 14px; background: var(--ink); border-radius: 5px; width: 78%; margin-bottom: 7px; }
+.mock-h1-sm { height: 10px; background: var(--ink); border-radius: 5px; width: 55%; opacity: 0.25; margin-bottom: 14px; }
+.mock-cta-btn { height: 26px; width: 96px; background: var(--spark); border-radius: 100px; }
+.mock-cards-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 14px; }
+.mock-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.mock-card-icon { width: 22px; height: 22px; border-radius: 6px; margin-bottom: 8px; }
+.mock-card-icon.c1 { background: var(--spark-glow); border: 1px solid rgba(240,90,26,0.2); }
+.mock-card-icon.c2 { background: var(--ink); }
+.mock-card-icon.c3 { background: #e8e5e0; }
+.mock-card-line { height: 5px; background: var(--border); border-radius: 2px; margin-bottom: 4px; }
+.mock-card-line.short { width: 60%; }
+
+.hero-badge {
+  position: absolute;
+  bottom: -18px; right: -18px;
+  background: var(--spark);
+  color: #fff;
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow-spark);
+  animation: floatBadge 3s ease-in-out infinite;
+}
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.badge-icon { font-size: 1.5rem; }
+.badge-text { font-size: 0.78rem; font-weight: 800; line-height: 1.3; }
+
+/* ============================================================
+   STATS BAR
+============================================================ */
+.stats-bar {
+  background: var(--ink);
+  padding: 0 5%;
+}
+.stats-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-left: 1px solid rgba(255,255,255,0.06);
+}
+.stat-block {
+  text-align: center;
+  padding: 40px 20px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+}
+.stat-block-num {
+  font-family: 'Fraunces', serif;
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: var(--spark);
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.stat-block-label { font-size: 0.8rem; color: rgba(255,255,255,0.38); font-weight: 500; line-height: 1.5; }
+
+/* ============================================================
+   SECTION SHARED
+============================================================ */
+.section-pad { padding: 100px 5%; }
+.section-inner { max-width: 1280px; margin: 0 auto; }
+.section-inner-narrow { max-width: 860px; margin: 0 auto; }
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--spark);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+.section-title em { font-style: italic; color: var(--spark); }
+.section-sub {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #5a5a5a;
+  max-width: 540px;
+}
+
+/* ============================================================
+   PROCESS
+============================================================ */
+#process { background: var(--light); }
+
+.process-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 60px;
+}
+
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+.step {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 28px 22px;
+  border: 1px solid var(--border);
+  position: relative;
+  transition: transform 0.35s var(--ease-spring), box-shadow 0.3s;
+  overflow: hidden;
+}
+.step::after {
+  content: attr(data-n);
+  position: absolute;
+  bottom: -10px; right: 8px;
+  font-family: 'Fraunces', serif;
+  font-size: 5rem;
+  font-weight: 900;
+  color: rgba(240,90,26,0.06);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.step:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.step-icon {
+  width: 44px; height: 44px;
+  background: var(--spark-glow);
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.step-title { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+.step-desc { font-size: 0.875rem; color: #666; line-height: 1.65; }
+
+/* ============================================================
+   PRICING
+============================================================ */
+#pricing { background: var(--light); }
+
+.pricing-header { text-align: center; max-width: 600px; margin: 0 auto 60px; }
+.pricing-header .section-sub { margin: 0 auto; }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.price-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 36px 30px;
+  border: 1px solid var(--border);
+  position: relative;
+  transition: transform 0.35s var(--ease-spring), box-shadow 0.3s;
+}
+.price-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+.price-card.featured {
+  background: var(--ink);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-10px);
+}
+.price-card.featured:hover { transform: translateY(-16px); }
+
+.popular-badge {
+  position: absolute;
+  top: -13px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--spark);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(240,90,26,0.35);
+}
+
+.price-name { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 5px; }
+.price-desc { font-size: 0.82rem; opacity: 0.5; margin-bottom: 26px; line-height: 1.5; }
+.price-amount { display: flex; align-items: baseline; gap: 3px; margin-bottom: 28px; }
+.price-dollar { font-size: 1.15rem; font-weight: 600; opacity: 0.65; }
+.price-num { font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
+.price-period { font-size: 0.85rem; opacity: 0.5; }
+.price-divider { height: 1px; background: currentColor; opacity: 0.1; margin-bottom: 24px; }
+
+.price-features { list-style: none; margin-bottom: 30px; }
+.price-features li {
+  font-size: 0.875rem;
+  padding: 7px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+.price-features li::before {
+  content: '';
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--spark) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8l3 3 5-5' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.btn-price {
+  display: block;
+  text-align: center;
+  padding: 13px 24px;
+  border-radius: 100px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-price-outline { border: 2px solid var(--border); color: var(--ink); }
+.btn-price-outline:hover { border-color: var(--spark); color: var(--spark); transform: translateY(-1px); }
+.btn-price-filled { background: var(--spark); color: #fff; box-shadow: 0 4px 18px rgba(240,90,26,0.35); }
+.btn-price-filled:hover { background: var(--spark-dark); transform: translateY(-2px); }
+.btn-price-ghost { border: 2px solid rgba(255,255,255,0.18); color: #fff; }
+.btn-price-ghost:hover { border-color: rgba(255,255,255,0.5); transform: translateY(-1px); }
+
+/* ============================================================
+   TESTIMONIALS
+============================================================ */
+#testimonials { background: var(--spark-glow); }
+
+.reviews-header { text-align: center; max-width: 520px; margin: 0 auto 16px; }
+.rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 52px;
+}
+.stars { color: #f5c518; font-size: 1.15rem; letter-spacing: 2px; }
+.rating-num { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 900; }
+.rating-info { font-size: 0.83rem; color: var(--muted); }
+
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+.review {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 26px;
+  border: 1px solid var(--border);
+  transition: transform 0.35s var(--ease-spring);
+}
+.review:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.review.dark { background: var(--ink); color: #fff; border-color: transparent; }
+
+.review-stars { color: #f5c518; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 14px; }
+.review-quote {
+  font-family: 'Fraunces', serif;
+  font-size: 0.975rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.68;
+  margin-bottom: 20px;
+}
+.review.dark .review-quote { color: rgba(255,255,255,0.88); }
+.review-author { display: flex; align-items: center; gap: 11px; }
+.review-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--spark-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--spark);
+  flex-shrink: 0;
+}
+.review.dark .review-avatar { background: rgba(240,90,26,0.18); }
+.review-name { font-weight: 700; font-size: 0.875rem; }
+.review-role { font-size: 0.77rem; color: var(--muted); margin-top: 2px; }
+.review.dark .review-role { color: rgba(255,255,255,0.38); }
+
+/* ============================================================
+   ABOUT
+============================================================ */
+#about { background: var(--light); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+.about-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 36px; }
+.fact {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  border: 1px solid var(--border);
+  transition: transform 0.3s var(--ease-spring);
+}
+.fact:hover { transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+.fact-icon {
+  width: 34px; height: 34px;
+  background: var(--spark-glow);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 10px;
+}
+.fact-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px; font-weight: 600; }
+.fact-value { font-weight: 700; font-size: 0.9rem; }
+
+.about-card {
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 44px;
+  position: relative;
+  overflow: hidden;
+}
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, rgba(240,90,26,0.18) 0%, transparent 70%);
+}
+.about-card::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; left: -30px;
+  width: 140px; height: 140px;
+  background: radial-gradient(circle, rgba(240,90,26,0.08) 0%, transparent 70%);
+}
+.about-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.9rem;
+  font-weight: 900;
+  line-height: 1.18;
+  margin-bottom: 16px;
+  letter-spacing: -0.025em;
+  position: relative;
+  z-index: 1;
+}
+.about-card-title span { color: var(--spark); }
+.about-card-body { font-size: 0.9rem; line-height: 1.75; color: rgba(255,255,255,0.6); margin-bottom: 30px; position: relative; z-index: 1; }
+.about-stats { display: flex; gap: 28px; position: relative; z-index: 1; }
+.about-stat-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 900; color: var(--spark); line-height: 1; }
+.about-stat-label { font-size: 0.74rem; color: rgba(255,255,255,0.4); margin-top: 4px; line-height: 1.4; }
+
+.about-float {
+  position: absolute;
+  bottom: -18px; right: 36px;
+  background: var(--spark);
+  color: #fff;
+  border-radius: 100px;
+  padding: 12px 22px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  box-shadow: var(--shadow-spark);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* ============================================================
+   FAQ
+============================================================ */
+#faq { background: var(--spark-glow); }
+.faq-header { text-align: center; max-width: 540px; margin: 0 auto 52px; }
+
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 1060px; margin: 0 auto; }
+
+.faq-item {
+  background: #fff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: box-shadow 0.25s;
+}
+.faq-item.open { box-shadow: var(--shadow-md); }
+.faq-item:hover { box-shadow: var(--shadow-sm); }
+
+.faq-q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 22px;
+  cursor: pointer;
+  gap: 14px;
+  user-select: none;
+}
+.faq-q-text { font-family: 'Fraunces', serif; font-size: 0.975rem; font-weight: 700; line-height: 1.4; }
+.faq-btn {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--spark-glow);
+  border: 1px solid rgba(240,90,26,0.15);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.35s var(--ease-spring);
+}
+.faq-item.open .faq-btn { background: var(--spark); transform: rotate(45deg); }
+.faq-btn svg path { transition: stroke 0.2s; }
+.faq-item.open .faq-btn svg path { stroke: #fff; }
+
+.faq-body { max-height: 0; overflow: hidden; transition: max-height 0.42s ease; }
+.faq-item.open .faq-body { max-height: 500px; }
+.faq-body-inner {
+  padding: 0 22px 20px;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.78;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+/* ============================================================
+   CONTACT
+============================================================ */
+#contact { background: var(--ink); color: #fff; }
+
+.contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+
+.contact-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 18px;
+}
+.contact-title em { font-style: italic; color: var(--spark); }
+.contact-sub { font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.75; margin-bottom: 40px; }
+
+.contact-details { display: flex; flex-direction: column; gap: 16px; }
+.contact-item { display: flex; align-items: center; gap: 14px; }
+.contact-item-icon {
+  width: 42px; height: 42px;
+  background: rgba(240,90,26,0.13);
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.contact-item:hover .contact-item-icon { background: rgba(240,90,26,0.22); }
+.contact-item-label { font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.32); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 2px; }
+.contact-item-val { font-size: 0.9rem; color: rgba(255,255,255,0.82); font-weight: 500; }
+
+.form { display: flex; flex-direction: column; gap: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 7px; }
+.form-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.38); }
+
+.form-input, .form-select, .form-textarea {
+  background: rgba(255,255,255,0.055);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  outline: none;
+  width: 100%;
+}
+.form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.22); }
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--spark);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 3px rgba(240,90,26,0.14);
+}
+.form-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' stroke='rgba(255,255,255,0.35)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+.form-select option { background: #2a2a2a; }
+.form-textarea { resize: vertical; min-height: 110px; }
+
+.btn-submit {
+  background: var(--spark);
+  color: #fff;
+  padding: 15px 32px;
+  border-radius: 100px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 4px;
+  box-shadow: 0 4px 20px rgba(240,90,26,0.3);
+  transition: background 0.2s, transform 0.25s var(--ease-spring), box-shadow 0.2s;
+}
+.btn-submit:hover { background: var(--spark-dark); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(240,90,26,0.45); }
+
+/* ============================================================
+   TERMS & PRIVACY (inline sections, dark bg)
+============================================================ */
+#terms { background: #0d0d0d; color: #fff; }
+#privacy { background: #111; color: #fff; }
+
+.legal-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
+
+.legal-sidebar { position: sticky; top: 100px; }
+.legal-sidebar-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.legal-sidebar-title em { font-style: italic; color: var(--spark); }
+.legal-sidebar-sub { font-size: 0.875rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-bottom: 20px; }
+.legal-date {
+  display: inline-block;
+  background: rgba(240,90,26,0.12);
+  border: 1px solid rgba(240,90,26,0.18);
+  color: var(--spark);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 5px 13px;
+  border-radius: 100px;
+}
+
+.legal-blocks { display: flex; flex-direction: column; gap: 0; }
+.legal-block {
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.legal-block:last-child { border-bottom: none; }
+.legal-block-num { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--spark); margin-bottom: 7px; }
+.legal-block h3 { font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; }
+.legal-block p { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.8; margin-bottom: 10px; }
+.legal-block p:last-child { margin-bottom: 0; }
+.legal-block ul { list-style: none; padding: 0; margin-top: 8px; }
+.legal-block ul li {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.5);
+  padding: 7px 0 7px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+  line-height: 1.6;
+}
+.legal-block ul li::before { content: '→'; position: absolute; left: 0; color: var(--spark); font-size: 0.8rem; }
+.legal-block ul li:last-child { border-bottom: none; }
+
+.legal-highlight {
+  background: rgba(240,90,26,0.09);
+  border: 1px solid rgba(240,90,26,0.15);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin: 12px 0;
+}
+.legal-highlight p { color: rgba(255,255,255,0.72) !important; font-size: 0.875rem !important; margin: 0 !important; }
+.legal-highlight strong { color: var(--spark); }
+
+/* Privacy summary cards */
+.privacy-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 8px; }
+.priv-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-sm); padding: 18px; text-align: center; }
+.priv-icon { font-size: 1.4rem; margin-bottom: 8px; }
+.priv-title { font-weight: 700; font-size: 0.85rem; margin-bottom: 5px; }
+.priv-text { font-size: 0.77rem; color: rgba(255,255,255,0.38); line-height: 1.5; }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer {
+  background: #070707;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 50px 5% 36px;
+}
+.footer-top {
+  max-width: 1280px;
+  margin: 0 auto 32px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.footer-brand {}
+.footer-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.footer-logo-icon { width: 32px; height: 32px; background: var(--spark); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.footer-logo-text { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1rem; color: #fff; }
+.footer-logo-text span { color: var(--spark); }
+.footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.35); line-height: 1.6; max-width: 220px; }
+
+.footer-col {}
+.footer-col-title { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: #fff; }
+
+.footer-bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.28); }
+.footer-legal { display: flex; gap: 20px; }
+.footer-legal a { font-size: 0.8rem; color: rgba(255,255,255,0.28); text-decoration: none; transition: color 0.2s; }
+.footer-legal a:hover { color: rgba(255,255,255,0.6); }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 1100px) {
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 960px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { order: -1; }
+  #home { padding: 100px 5% 60px; align-items: flex-start; }
+  .process-top { grid-template-columns: 1fr; gap: 20px; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 380px; }
+  .price-card.featured { transform: none; }
+  .price-card.featured:hover { transform: translateY(-6px); }
+  .reviews-grid { grid-template-columns: 1fr 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 50px; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .legal-grid { grid-template-columns: 1fr; gap: 32px; }
+  .legal-sidebar { position: static; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-block { border-bottom: 1px solid rgba(255,255,255,0.06); }
+}
+
+@media (max-width: 640px) {
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .hero-trust { gap: 14px; }
+  .trust-divider { display: none; }
+  .steps { grid-template-columns: 1fr; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .about-facts { grid-template-columns: 1fr 1fr; }
+  .about-card { padding: 28px; }
+  .form-row { grid-template-columns: 1fr; }
+  .privacy-summary { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-legal { justify-content: center; flex-wrap: wrap; }
+  .section-pad { padding: 72px 5%; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+============================================================ -->
+<nav id="main-nav">
+  <a href="#home" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M10 2L5 10h5l-2 6L15 8h-5l0-6z" fill="#f05a1a"/></svg>
+    </div>
+    <div class="logo-text">Local <span>Spark</span><br>Studio</div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#process">Process</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="btn-nav">Free Quote ⚡</a></li>
+  </ul>
+
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="#process" onclick="closeMenu()">Process</a>
+  <a href="#pricing" onclick="closeMenu()">Pricing</a>
+  <a href="#testimonials" onclick="closeMenu()">Reviews</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#contact" class="mob-cta" onclick="closeMenu()">Get a Free Quote ⚡</a>
+</div>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section id="home">
+  <div class="hero-inner">
+
+  <div class="hero-content">
+    <div class="hero-tag reveal">Web Design for Small Business</div>
+    <h1 class="hero-title reveal" style="transition-delay: 0.08s">
+      Igniting Local<br>Businesses <em>Online</em>
+    </h1>
+    <p class="hero-sub reveal" style="transition-delay: 0.16s">
+      We build fast, professional websites for small businesses ready to get found on Google and turn visitors into paying customers — in as little as 7 days.
+    </p>
+    <div class="hero-ctas reveal" style="transition-delay: 0.24s">
+      <a href="#contact" class="btn-primary">
+        Get a Free Quote
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#pricing" class="btn-ghost">See Pricing <span class="btn-ghost-arrow">→</span></a>
+    </div>
+    <div class="hero-trust reveal" style="transition-delay: 0.32s">
+      <div class="trust-item">
+        <div>
+          <div class="trust-num">14<span>+</span></div>
+          <div class="trust-label">Sites<br>Launched</div>
+        </div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <div>
+          <div class="trust-num">5<span>.0</span></div>
+          <div class="trust-label">Star<br>Rating</div>
+        </div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <div>
+          <div class="trust-num">7</div>
+          <div class="trust-label">Day<br>Turnaround</div>
+        </div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <div>
+          <div class="trust-num">$499</div>
+          <div class="trust-label">Starting<br>Price</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual reveal" style="transition-delay: 0.18s; position: relative;">
+    <div class="browser">
+      <div class="browser-chrome">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">yourlocalbusiness.com</div>
+      </div>
+      <div class="browser-body">
+        <div class="mock-topbar">
+          <div class="mock-logo-row">
+            <div class="mock-logo-sq"></div>
+            <div class="mock-logo-bar"></div>
+          </div>
+          <div class="mock-nav-pills"><span></span><span></span><span></span></div>
+        </div>
+        <div class="mock-hero-area">
+          <div class="mock-h1"></div>
+          <div class="mock-h1-sm"></div>
+          <div class="mock-cta-btn"></div>
+        </div>
+        <div class="mock-cards-row">
+          <div class="mock-card">
+            <div class="mock-card-icon c1"></div>
+            <div class="mock-card-line"></div>
+            <div class="mock-card-line short"></div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-card-icon c2"></div>
+            <div class="mock-card-line"></div>
+            <div class="mock-card-line short"></div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-card-icon c3"></div>
+            <div class="mock-card-line"></div>
+            <div class="mock-card-line short"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <div class="badge-icon">⚡</div>
+      <div class="badge-text">Live in<br>7 Days</div>
+    </div>
+  </div>
+  </div><!-- end .hero-inner -->
+</section>
+
+<!-- ============================================================
+     STATS BAR
+============================================================ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-block reveal">
+      <div class="stat-block-num">500+</div>
+      <div class="stat-block-label">Small Businesses<br>Helped Nationwide</div>
+    </div>
+    <div class="stat-block reveal" style="transition-delay:0.1s">
+      <div class="stat-block-num">5.0★</div>
+      <div class="stat-block-label">Average Client<br>Rating</div>
+    </div>
+    <div class="stat-block reveal" style="transition-delay:0.2s">
+      <div class="stat-block-num">7 Days</div>
+      <div class="stat-block-label">Average Site<br>Turnaround</div>
+    </div>
+    <div class="stat-block reveal" style="transition-delay:0.3s">
+      <div class="stat-block-num">US-Wide</div>
+      <div class="stat-block-label">100% Remote,<br>Anywhere in America</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PROCESS
+============================================================ -->
+<section id="process" class="section-pad">
+  <div class="section-inner">
+    <div class="process-top">
+      <div>
+        <div class="eyebrow reveal">How It Works</div>
+        <h2 class="section-title reveal" style="transition-delay:0.1s">From idea to <em>live site</em><br>in 4 simple steps</h2>
+      </div>
+      <p class="section-sub reveal" style="transition-delay:0.15s">
+        We keep everything simple so you can stay focused on running your business. No tech knowledge needed — we handle all of it.
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal" data-n="1">
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#f05a1a" stroke-width="1.7"/><path d="M10 6v4l3 3" stroke="#f05a1a" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </div>
+        <div class="step-title">1. We Meet</div>
+        <p class="step-desc">A quick call or message to understand your business, your goals, and your vision. No commitment required.</p>
+      </div>
+      <div class="step reveal" data-n="2" style="transition-delay:0.1s">
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="4" width="15" height="12" rx="2" stroke="#f05a1a" stroke-width="1.7"/><path d="M6 8.5h8M6 11.5h5" stroke="#f05a1a" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </div>
+        <div class="step-title">2. We Design</div>
+        <p class="step-desc">We build a custom, mobile-friendly site tailored to your brand and built to attract your ideal customers.</p>
+      </div>
+      <div class="step reveal" data-n="3" style="transition-delay:0.2s">
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10l4 4 8-8" stroke="#f05a1a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step-title">3. You Review</div>
+        <p class="step-desc">You give feedback and we refine the design until it's exactly right. Your satisfaction is guaranteed.</p>
+      </div>
+      <div class="step reveal" data-n="4" style="transition-delay:0.3s">
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v10M6.5 9.5l3.5 3.5 3.5-3.5M4 16h12" stroke="#f05a1a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="step-title">4. We Launch</div>
+        <p class="step-desc">Your site goes live. We handle every technical detail — domain connection, hosting, Google listing, all of it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRICING
+============================================================ -->
+<section id="pricing" class="section-pad" style="background: var(--ink);">
+  <div class="section-inner">
+    <div class="pricing-header">
+      <div class="eyebrow reveal" style="color: rgba(240,90,26,0.9)">Pricing</div>
+      <h2 class="section-title reveal" style="transition-delay:0.1s; color:#fff">Simple, <em>transparent</em> pricing</h2>
+      <p class="section-sub reveal" style="transition-delay:0.18s; color: rgba(255,255,255,0.45); margin:0 auto">No hidden fees. No long-term contracts. Just real results for your business.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-name">Starter Spark</div>
+        <div class="price-desc">Perfect for getting online fast</div>
+        <div class="price-amount">
+          <span class="price-dollar">$</span>
+          <span class="price-num">499</span>
+          <span class="price-period">one-time</span>
+        </div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>3–4 custom pages</li>
+          <li>Mobile-friendly design</li>
+          <li>Contact form</li>
+          <li>Google Maps embed</li>
+          <li>1 revision round</li>
+          <li>5–7 day delivery</li>
+        </ul>
+        <a href="#contact" class="btn-price btn-price-outline">Get Started</a>
+      </div>
+
+      <div class="price-card featured reveal" style="transition-delay:0.12s">
+        <div class="popular-badge">Most Popular</div>
+        <div class="price-name">Local Spark Pro</div>
+        <div class="price-desc">Best for serious local businesses</div>
+        <div class="price-amount">
+          <span class="price-dollar">$</span>
+          <span class="price-num">799</span>
+          <span class="price-period">one-time</span>
+        </div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>5–6 custom pages</li>
+          <li>Photo gallery</li>
+          <li>Google Reviews widget</li>
+          <li>Basic SEO setup</li>
+          <li>3 revision rounds</li>
+          <li>30 days support</li>
+        </ul>
+        <a href="#contact" class="btn-price btn-price-filled">Get Started</a>
+      </div>
+
+      <div class="price-card reveal" style="transition-delay:0.24s">
+        <div class="price-name">Growth Plan</div>
+        <div class="price-desc">Keep growing after launch</div>
+        <div class="price-amount">
+          <span class="price-dollar">$</span>
+          <span class="price-num">79</span>
+          <span class="price-period">/month</span>
+        </div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Website hosting</li>
+          <li>Monthly content updates</li>
+          <li>Uptime monitoring</li>
+          <li>Priority support</li>
+          <li>Google listing management</li>
+          <li>Monthly performance report</li>
+        </ul>
+        <a href="#contact" class="btn-price btn-price-outline">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+============================================================ -->
+<section id="testimonials" class="section-pad">
+  <div class="section-inner">
+    <div class="reviews-header">
+      <div class="eyebrow reveal">Reviews</div>
+      <h2 class="section-title reveal" style="transition-delay:0.1s">Business owners <em>love</em> the results</h2>
+    </div>
+    <div class="rating-row reveal" style="transition-delay:0.15s">
+      <div class="stars">★★★★★</div>
+      <div class="rating-num">5.0</div>
+      <div class="rating-info">from 14+ verified clients</div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">"Before Local Spark we were invisible online. Now we show up on Google and get calls from new customers every single week."</p>
+        <div class="review-author">
+          <div class="review-avatar">M</div>
+          <div><div class="review-name">Marcus T.</div><div class="review-role">Auto Repair Owner</div></div>
+        </div>
+      </div>
+
+      <div class="review dark reveal" style="transition-delay:0.1s">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">"The whole process was easier than I expected. They handled everything and the site looked exactly like my brand. Bookings went up within the first month."</p>
+        <div class="review-author">
+          <div class="review-avatar">D</div>
+          <div><div class="review-name">Darius W.</div><div class="review-role">Barbershop Owner</div></div>
+        </div>
+      </div>
+
+      <div class="review reveal" style="transition-delay:0.2s">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">"I was skeptical at first but the result was stunning. Customers keep telling me how professional the website looks. Worth every penny."</p>
+        <div class="review-author">
+          <div class="review-avatar">L</div>
+          <div><div class="review-name">Lisa M.</div><div class="review-role">Restaurant Owner</div></div>
+        </div>
+      </div>
+
+      <div class="review reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">"As a contractor I relied on word of mouth. Now the website does the talking for me. I get quote requests while I sleep."</p>
+        <div class="review-author">
+          <div class="review-avatar">K</div>
+          <div><div class="review-name">Kevin O.</div><div class="review-role">Plumbing Contractor</div></div>
+        </div>
+      </div>
+
+      <div class="review reveal" style="transition-delay:0.1s">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">"My Instagram page was not enough. The website made my salon look so much more legitimate. Three new clients this week alone."</p>
+        <div class="review-author">
+          <div class="review-avatar">S</div>
+          <div><div class="review-name">Sofia R.</div><div class="review-role">Hair Salon Owner</div></div>
+        </div>
+      </div>
+
+      <div class="review reveal" style="transition-delay:0.2s">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">"Fast, professional, and affordable. My landscaping business finally has an online presence I'm proud to share. Highly recommend."</p>
+        <div class="review-author">
+          <div class="review-avatar">J</div>
+          <div><div class="review-name">James H.</div><div class="review-role">Landscaping Owner</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+============================================================ -->
+<section id="about" class="section-pad" style="background: var(--spark-glow);">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <div class="eyebrow reveal">About Us</div>
+        <h2 class="section-title reveal" style="transition-delay:0.1s">Built for the <em>businesses</em><br>that keep towns running</h2>
+        <p class="section-sub reveal" style="transition-delay:0.18s">
+          Local Spark Studio was founded with one mission: help small businesses compete online. We specialize in local shops, contractors, salons, and service businesses that deserve a real web presence.
+        </p>
+        <p class="section-sub reveal" style="transition-delay:0.22s; margin-top: 14px;">
+          Based in Sayreville, NJ, we serve clients across the entire country — fully remote, fully professional, same-day response guaranteed.
+        </p>
+        <div class="about-facts reveal" style="transition-delay:0.28s">
+          <div class="fact">
+            <div class="fact-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C5.79 2 4 3.79 4 6c0 3.5 4 8 4 8s4-4.5 4-8c0-2.21-1.79-4-4-4zm0 5.5A1.5 1.5 0 1 1 8 4a1.5 1.5 0 0 1 0 3.5z" fill="#f05a1a"/></svg></div>
+            <div class="fact-label">Location</div>
+            <div class="fact-value">Sayreville, NJ</div>
+          </div>
+          <div class="fact">
+            <div class="fact-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#f05a1a" stroke-width="1.5"/><path d="M2 8h12M8 2c-1.5 1.5-2.5 3.5-2.5 6s1 4.5 2.5 6M8 2c1.5 1.5 2.5 3.5 2.5 6s-1 4.5-2.5 6" stroke="#f05a1a" stroke-width="1.5"/></svg></div>
+            <div class="fact-label">Service Area</div>
+            <div class="fact-value">Nationwide Remote</div>
+          </div>
+          <div class="fact">
+            <div class="fact-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#f05a1a" stroke-width="1.5"/><path d="M8 5v3l2.5 2.5" stroke="#f05a1a" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <div class="fact-label">Turnaround</div>
+            <div class="fact-value">5–7 Day Delivery</div>
+          </div>
+          <div class="fact">
+            <div class="fact-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1l1.8 5H15l-4.5 3.3 1.8 5L8 11.3 3.7 14.3l1.8-5L1 6h5.2z" stroke="#f05a1a" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+            <div class="fact-label">Response Time</div>
+            <div class="fact-value">Same Day Guaranteed</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="position: relative;" class="reveal" style="transition-delay:0.2s">
+        <div class="about-card">
+          <h3 class="about-card-title">Your website is your<br><span>hardest working</span> employee</h3>
+          <p class="about-card-body">Most small businesses are leaving money on the table with no website or one that looks like it was built in 2009. We change that — fast, affordably, and without the headaches.</p>
+          <div class="about-stats">
+            <div>
+              <div class="about-stat-num">97%</div>
+              <div class="about-stat-label">of consumers research<br>online before buying</div>
+            </div>
+            <div>
+              <div class="about-stat-num">46%</div>
+              <div class="about-stat-label">of Google searches<br>seek local info</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-float">⚡ Igniting Local Businesses Online</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+============================================================ -->
+<section id="faq" class="section-pad">
+  <div class="section-inner">
+    <div class="faq-header">
+      <div class="eyebrow reveal">FAQ</div>
+      <h2 class="section-title reveal" style="transition-delay:0.1s">Frequently Asked <em>Questions</em></h2>
+      <p class="section-sub reveal" style="transition-delay:0.18s; margin: 0 auto;">Everything you need to know. Still have questions? Reach out — we respond the same day.</p>
+    </div>
+
+    <div class="faq-grid">
+
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">How long does it take to build my website?</span>
+          <div class="faq-btn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="#f05a1a" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">Most sites are done in 5–7 business days from when we receive your content. The Pro package typically takes 7–10 days. Turnaround depends on how quickly you provide feedback and materials.</div></div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:0.05s">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">What information do I need to provide?</span>
+          <div class="faq-btn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="#f05a1a" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">We'll need your business name, logo (if you have one), photos, service/page text, contact details, and hours. Don't have everything? We'll walk you through it on our first call — no worries.</div></div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:0.08s">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Do I need to buy a domain name myself?</span>
+          <div class="faq-btn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="#f05a1a" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">We recommend buying your domain through Namecheap or Google Domains (~$10–15/year) so you own it. We handle all the technical setup — connecting it to hosting, SSL certificate, everything.</div></div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:0.1s">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Do you offer revisions? What if I don't like it?</span>
+          <div class="faq-btn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="#f05a1a" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">Yes. Starter Spark includes 1 revision round; Pro includes 3. A round means you review, give feedback, and we make changes. Our goal is that you love the final result.</div></div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:0.12s">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Will my site look good on phones?</span>
+          <div class="faq-btn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="#f05a1a" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">100%. Every site we build is fully mobile-responsive. It automatically adjusts to look great on any screen — phone, tablet, or desktop. More than 60% of local searches happen on mobile, so this is non-negotiable for us.</div></div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:0.14s">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">What's included in the Growth Plan?</span>
+          <div class="faq-btn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="#f05a1a" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">The $79/month Growth Plan includes: fast hosting, monthly content updates, uptime monitoring, priority support, Google Business Profile management, and a monthly performance summary.</div></div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:0.16s">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">How does payment work?</span>
+          <div class="faq-btn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="#f05a1a" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">Payment is due in full before the final site files are delivered and the site goes live. We accept Zelle, Venmo, PayPal, bank transfer, and card. No hidden fees — what you see is what you pay.</div></div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay:0.18s">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Do you work with businesses outside New Jersey?</span>
+          <div class="faq-btn"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="#f05a1a" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">Yes — we work with small businesses anywhere in the US, fully remote. Everything is handled via email, phone, and video call. We're based in Sayreville, NJ but our clients come from all across the country.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+============================================================ -->
+<section id="contact" class="section-pad">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <div class="eyebrow reveal" style="color: rgba(240,90,26,0.7)">Get In Touch</div>
+        <h2 class="contact-title reveal" style="transition-delay:0.1s">
+          Let's get your<br>business <em>online</em><br>this week
+        </h2>
+        <p class="contact-sub reveal" style="transition-delay:0.18s">
+          Fill out the form and we'll respond the same day with a free consultation and custom quote. No pressure, no contracts.
+        </p>
+
+        <div class="contact-details reveal" style="transition-delay:0.26s">
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 3h12a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="#f05a1a" stroke-width="1.5"/><path d="M2 4.5l7 5.5 7-5.5" stroke="#f05a1a" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-val">localsparkstudio@gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.5 3h3l1.5 4-2 1.5a9 9 0 0 0 3.5 3.5L11 10l4 1.5v3c0 1.5-3.5 2-6 0A14 14 0 0 1 3.5 8C1 5.5 2 3 3.5 3z" stroke="#f05a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Phone</div>
+              <div class="contact-item-val">(732) 824-9650</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2C6.24 2 4 4.24 4 7c0 4.25 5 9 5 9s5-4.75 5-9c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 9 5a1.5 1.5 0 0 1 0 3.5z" fill="#f05a1a"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Location</div>
+              <div class="contact-item-val">Sayreville, NJ — Serving Nationwide</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay:0.2s">
+        <div class="form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Your Name</label>
+              <input type="text" class="form-input" placeholder="John Smith">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Business Name</label>
+              <input type="text" class="form-input" placeholder="Smith's Auto Repair">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input type="tel" class="form-input" placeholder="(732) 555-0000">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" placeholder="you@business.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Package Interest</label>
+            <select class="form-select">
+              <option value="" disabled selected>Select a package...</option>
+              <option>Starter Spark — $499 one-time</option>
+              <option>Local Spark Pro — $799 one-time (Most Popular)</option>
+              <option>Growth Plan — $79/month</option>
+              <option>Not sure yet — let's talk</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tell Us About Your Business</label>
+            <textarea class="form-textarea" placeholder="Briefly describe your business and what you're looking for..."></textarea>
+          </div>
+          <button class="btn-submit" type="button">Send Free Quote Request ⚡</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TERMS & CONDITIONS
+============================================================ -->
+<section id="terms" class="section-pad">
+  <div class="section-inner">
+    <div class="legal-grid">
+      <div class="legal-sidebar reveal">
+        <div class="legal-sidebar-title">Terms &amp;<br><em>Conditions</em></div>
+        <p class="legal-sidebar-sub">Plain language. No fine print. Here's exactly how we work together.</p>
+        <div class="legal-date">Updated January 2025</div>
+      </div>
+
+      <div class="legal-blocks reveal" style="transition-delay:0.1s">
+        <div class="legal-block">
+          <div class="legal-block-num">01 — Scope of Services</div>
+          <h3>What We Do</h3>
+          <p>Local Spark Studio provides web design and development services for small businesses. This includes building new websites, redesigning existing ones, and optional ongoing maintenance through our Growth Plan. Each project is scoped based on the package you select and confirmed before work begins.</p>
+        </div>
+
+        <div class="legal-block">
+          <div class="legal-block-num">02 — Payment</div>
+          <h3>How Payment Works</h3>
+          <p>Payment is due in full before the final website files are delivered and your site goes live. We accept Zelle, Venmo, PayPal, bank transfer, and card.</p>
+          <div class="legal-highlight"><p><strong>Simple version:</strong> You pay, we deliver. No hidden fees — the price we quote is exactly what you pay.</p></div>
+        </div>
+
+        <div class="legal-block">
+          <div class="legal-block-num">03 — Revisions</div>
+          <h3>Revision Policy</h3>
+          <p>Each package includes a set number of revision rounds — Starter Spark includes 1 round, Local Spark Pro includes 3. A revision round means you review the work, send feedback, and we make the requested changes. Additional rounds beyond what's included can be arranged for an agreed-upon fee.</p>
+        </div>
+
+        <div class="legal-block">
+          <div class="legal-block-num">04 — Ownership</div>
+          <h3>Who Owns the Site</h3>
+          <p>Once full payment is received, you own the final website — the design, the code, all of it. We will transfer all files to you and you're free to do whatever you want going forward. Before payment, Local Spark Studio retains ownership of all work in progress.</p>
+        </div>
+
+        <div class="legal-block">
+          <div class="legal-block-num">05 — Turnaround</div>
+          <h3>Delivery Timeline</h3>
+          <p>Our quoted timeframes (typically 5–10 business days) are estimates, not guarantees. Delays can occur if we're waiting on content, revisions are extensive, or other circumstances arise. We'll always keep you informed.</p>
+        </div>
+
+        <div class="legal-block">
+          <div class="legal-block-num">06 — Your Responsibilities</div>
+          <h3>What We Need From You</h3>
+          <p>To keep your project on track, please provide the following in a timely manner:</p>
+          <ul>
+            <li>Your logo and brand assets (if available)</li>
+            <li>Photos of your business, team, or work</li>
+            <li>Text content for each page (or approval of copy we draft)</li>
+            <li>Feedback on designs within a reasonable timeframe</li>
+            <li>Domain registrar access when needed for setup</li>
+          </ul>
+        </div>
+
+        <div class="legal-block">
+          <div class="legal-block-num">07 — Limitation of Liability</div>
+          <h3>Business Results</h3>
+          <p>We build great websites — but we can't guarantee specific business outcomes like increased revenue, rankings, or customer growth. Results depend on many factors outside our control. Local Spark Studio is not liable for any business losses or outcomes related to your website's performance.</p>
+        </div>
+
+        <div class="legal-block">
+          <div class="legal-block-num">08 — Portfolio Rights</div>
+          <h3>Showcasing Our Work</h3>
+          <p>By working with us, you agree that Local Spark Studio may feature your completed website in our portfolio and marketing materials. If you'd prefer we keep your site private, just let us know — we'll respect that completely, no questions asked.</p>
+        </div>
+
+        <div class="legal-block">
+          <div class="legal-block-num">09 — Changes</div>
+          <h3>Updates to These Terms</h3>
+          <p>We may update these terms at any time. When we do, we'll update the date above. Questions? Just reach out — we're happy to explain anything.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRIVACY POLICY
+============================================================ -->
+<section id="privacy" class="section-pad">
+  <div class="section-inner">
+    <div class="legal-grid">
+      <div class="legal-sidebar reveal">
+        <div class="legal-sidebar-title"><em>Privacy</em><br>Policy</div>
+        <p class="legal-sidebar-sub">We keep it simple. We only collect what we need and never sell your data. Period.</p>
+        <div class="legal-date">Updated January 2025</div>
+      </div>
+
+      <div class="legal-blocks reveal" style="transition-delay:0.1s">
+
+        <div class="privacy-summary">
+          <div class="priv-card">
+            <div class="priv-icon">🔒</div>
+            <div class="priv-title">Your data is safe</div>
+            <div class="priv-text">We never sell or share your info with third parties</div>
+          </div>
+          <div class="priv-card">
+            <div class="priv-icon">📩</div>
+            <div class="priv-title">Used to respond only</div>
+            <div class="priv-text">Info submitted is only used to reply to your inquiry</div>
+          </div>
+          <div class="priv-card">
+            <div class="priv-icon">✉️</div>
+            <div class="priv-title">Easy to remove</div>
+            <div class="priv-text">Email us anytime to have your data deleted</div>
+          </div>
+        </div>
+
+        <div class="legal-block">
+          <div class="legal-block-num">01 — Data Collection</div>
+          <h3>What We Collect</h3>
+          <p>When you fill out our contact form, we collect: your name, business name, phone number, email address, and any message you choose to share. We only collect what you give us directly.</p>
+        </div>
+
+        <div class="legal-block">
+          <div class="legal-block-num">02 — How We Use It</div>
+          <h3>What We Do With Your Info</h3>
+          <p>Your contact form submission is used for one purpose: to respond to your inquiry and discuss your project.</p>
+          <div class="legal-highlight"><p><strong>We do not sell your data.</strong> We do not rent it. We do not share it with advertisers, marketers, or any third parties. Your information stays between you and Local Spark Studio.</p></div>
+        </div>
+
+        <div class="legal-block">
+          <div class="legal-block-num">03 — Analytics</div>
+          <h3>Google Analytics</h3>
+          <p>Our website uses Google Analytics to understand how visitors find and use the site. It collects anonymized data and does not identify you personally. You can opt out via the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener" style="color: var(--spark); text-decoration: none;">Google Analytics Opt-out Add-on</a>.</p>
+        </div>
+
+        <div class="legal-block">
+          <div class="legal-block-num">04 — Your Rights</div>
+          <h3>Data Removal</h3>
+          <p>You can request access to, correction of, or deletion of any information you've submitted. Just email us at <a href="mailto:localsparkstudio@gmail.com" style="color:var(--spark);text-decoration:none;">localsparkstudio@gmail.com</a> and we'll take care of it promptly.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#home" class="footer-logo-wrap">
+        <div class="footer-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M10 2L5 10h5l-2 6L15 8h-5l0-6z" fill="#fff"/></svg>
+        </div>
+        <span class="footer-logo-text">Local <span>Spark</span> Studio</span>
+      </a>
+      <p class="footer-tagline">Igniting Local Businesses Online — fast, affordable web design for small businesses across America.</p>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Navigate</div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#process">Process</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#terms">Terms & Conditions</a></li>
+        <li><a href="#privacy">Privacy Policy</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <ul>
+        <li><a href="tel:7328249650">(732) 824-9650</a></li>
+        <li><a href="mailto:localsparkstudio@gmail.com">localsparkstudio@gmail.com</a></li>
+        <li><a href="#contact">Sayreville, NJ</a></li>
+        <li><a href="#contact">Get a Free Quote ⚡</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Local Spark Studio. All rights reserved. Based in Sayreville, NJ.</span>
+    <div class="footer-legal">
+      <a href="#terms">Terms & Conditions</a>
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+  // SCROLL REVEAL — safe approach: visible by default, animate only after JS ready
+  window.addEventListener('load', () => {
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach((el, i) => {
+      const rect = el.getBoundingClientRect();
+      // Elements already in viewport on load: just leave visible
+      if (rect.top < window.innerHeight - 60) {
+        el.classList.add('visible');
+      } else {
+        // Only animate elements below the fold
+        el.classList.add('animate-ready');
+        obs.observe(el);
+      }
+    });
+  });
+
+  // NAV SCROLL SHADOW
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // MOBILE MENU
+  function toggleMenu() {
+    const drawer = document.getElementById('mobileDrawer');
+    const btn = document.getElementById('hamburger');
+    drawer.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobileDrawer').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+
+  // FAQ ACCORDION
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    if (!item) return;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  // ACTIVE NAV ON SCROLL
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  }, { passive: true });
+
+  // FORM SUBMIT
+  document.querySelector('.btn-submit').addEventListener('click', function() {
+    const n
